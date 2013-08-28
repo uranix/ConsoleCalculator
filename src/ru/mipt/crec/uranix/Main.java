@@ -1,7 +1,5 @@
 package ru.mipt.crec.uranix;
 
-import ru.mipt.crec.uranix.operations.*;
-
 public class Main {
 
 	/**
@@ -12,12 +10,12 @@ public class Main {
 		UserOutput uo = new UserOutput(System.out, System.err);
 		Calculator calc = new Calculator(ui, uo);
 		
-		calc.addOperation(new Addition());
-		calc.addOperation(new Substraction());
-		calc.addOperation(new Multiplication());
-		calc.addOperation(new Division());
-		calc.addOperation(new SquareRoot());
-		calc.addOperation(new Sine());
+		try {
+			calc.readOperationsFromConfig("operations.cfg");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
 		
 		calc.run();
 	}
